@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<cprj schemaVersion="0.0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CPRJ.xsd">
+
+  <created timestamp="2021-04-09T16:47:49" tool="uVision V5.34.0.0"/>
+
+  <info>
+    <name>KSC_Debug</name>
+    <description>Simple application to test KSC debug functionality.</description>
+  </info>
+
+  <packages>
+    <package name="CMSIS" vendor="ARM"/>
+    <package name="K32L3A60_DFP" vendor="NXP"/>
+  </packages>
+
+  <compilers>
+    <compiler name="AC6" version="6.0.0:6.99.99"/>
+  </compilers>
+
+  <target Ddsp="NO_DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmve="NO_MVE" Dname="K32L3A60VPJ1A" Dsecure="Non-secure" Dtz="NO_TZ" Dvendor="NXP:11" Pname="cm4">
+    <output intdir="./Objects/" name="KSC_Debug" outdir="./Objects/" type="exe"/>
+    <ldflags compiler="AC6" add="--entry=Reset_Handler --diag_suppress=L6314 --callgraph --info sizes --info summarysizes --info totals --info unused --info veneers --load_addr_map_info --map --strict --summary_stderr --symbols --xref" file="./RTE/Device/K32L3A60VPJ1A_cm4/K32L3A60xxx_cm4_flash.scf"/>
+    <cflags  compiler="AC6" add="-gdwarf-4 -O1 -std=c99 -xc -ffunction-sections -fno-rtti -Weverything -Wno-reserved-id-macro"/>
+    <asflags compiler="AC6" add="-gdwarf-4 -masm=auto"/>
+  </target>
+
+  <components>
+    <component Cclass="CMSIS"  Cgroup="CORE"                         Cvendor="ARM"/>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="K32L3A60_header" Cvendor="NXP"/>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="K32L3A60_system" Cvendor="NXP"/>
+    <component Cclass="Device" Cgroup="Startup"                      Cvendor="NXP">
+      <file attr="config" category="linkerScript" name="arm/K32L3A60xxx_cm4_flash.scf" version="1.1.0"/>
+    </component>
+  </components>
+
+  <files>
+    <group name="Debug App">
+      <file category="sourceC" name="./main.c"/>
+      <file category="sourceC" name="./func_1.c"/>
+      <file category="sourceC" name="./func_2.c"/>
+      <file category="sourceC" name="./func_3.c"/>
+    </group>
+  </files>
+
+</cprj>
