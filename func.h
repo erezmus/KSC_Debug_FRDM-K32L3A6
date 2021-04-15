@@ -17,29 +17,29 @@ extern struct_t gStructFnc1;
 extern struct_t gStructFnc2;
 extern struct_t gStructFnc3;
 
+extern float    gVarF32;
+extern double   gVarD64;
+extern int64_t  gVarS64;
+extern int32_t  gVarS32;
+extern uint32_t gVarU32;
+extern uint16_t gVarU16;
+extern uint8_t  gVarU8;
+
+
 
     void eFnc_1 (void);
 uint32_t eFnc_2 (uint32_t);
  int32_t eFnc_3 (int32_t, uint32_t);
+int32_t  eFnc_add(int32_t, int32_t);
 
 
 
-__STATIC_FORCEINLINE int32_t sfiSSAT(int32_t val, uint32_t sat)
+__STATIC_FORCEINLINE uint32_t sfiAdd(uint32_t op1, uint32_t op2)
 {
-  if ((sat >= 1U) && (sat <= 32U))
-  {
-    const int32_t max = (int32_t)((1U << (sat - 1U)) - 1U);
-    const int32_t min = -1 - max ;
-    if (val > max)
-    {
-      return max;
-    }
-    else if (val < min)
-    {
-      return min;
-    }
-  }
-  return val;
+  uint32_t result;
+
+  __ASM ("add %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
+  return(result);
 }
 
 __STATIC_FORCEINLINE uint32_t sfiUSAT(int32_t val, uint32_t sat)

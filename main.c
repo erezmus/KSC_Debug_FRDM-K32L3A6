@@ -34,47 +34,53 @@ static void delay (int32_t dlyTicks)
 }
 #endif
 
-static float    gVarF32_1 = 1.51f;
-extern float    gVarF32_2;
-       float    gVarF32_2 = 0.5f;
-extern int32_t  gVarS32_1;
-       int32_t  gVarS32_1 = 1;
-extern uint32_t gVarU32_1;
-       uint32_t gVarU32_1 = 33U;
+static float    gVarF32_s = 1.32f;
+       float    gVarF32   = 0.32f;
+       double   gVarD64   = 0.64;
+       int64_t  gVarS64   = 64;
+       int32_t  gVarS32   = 32;
+       uint32_t gVarU32   = 32U;
+       uint16_t gVarU16   = 16U;
+       uint8_t  gVarU8    = 8U;
 
 
 int main (void)
 {
-  volatile float    lVarF32 = 1.0f;
-  volatile int32_t  lVarS32 = 2;
-  volatile double   lVarS64 = 3;
-  volatile uint32_t lVarU32 = 4U;
+  volatile float    lVarF32 = gVarF32;
+  volatile double   lVarD64 = gVarD64;
+  volatile int64_t  lVarS64 = gVarS64;
+  volatile int32_t  lVarS32 = gVarS32;
+  volatile uint32_t lVarU32 = gVarU32;
+  volatile uint32_t lVarU16 = gVarU16;
+  volatile uint32_t lVarU8  = gVarU8;
 
-  SystemCoreClockUpdate();
+//SystemCoreClockUpdate();
+//SysTick_Config(SystemCoreClock / 1000);
 
-  lVarF32 = gVarF32_1 * gVarF32_2;
-  lVarF32 = lVarF32 + gVarF32_2 + gVarF32_1;
+  lVarF32 = gVarF32_s * gVarF32;
+  gVarF32 = lVarF32 + gVarF32 + gVarF32_s;
 
-  gVarS32_1 = INT32_MIN;
-  lVarS32   = sfiSSAT(gVarS32_1, 8U);
-  
-  lVarS32 = INT32_MAX;
-  lVarU32 = sfiUSAT(lVarS32, 8U);
+  gVarU32 = lVarU16 + lVarU8;
 
-  
-  lVarS32 = gVarS32_1;
-  lVarS64 = (double)lVarS32 * lVarS32;
-  lVarS64 = sqrt(lVarS64);
+  gVarS32 = INT32_MAX;
+  lVarU32 = sfiUSAT(gVarS32, 8U);
+
+  lVarS32 = gVarS32;
+  lVarS64 = lVarS32;
+  lVarS64 = lVarS64 * lVarS32;
+  lVarD64 = sqrt((double)lVarS64);
+  lVarU8 = sizeof(lVarS64);
+
+  gVarU32 = sfiAdd(lVarU32, 10U);
+  gVarS32 = eFnc_add(lVarS32, 10);
 
   eFnc_1();
-  gVarU32_1 = eFnc_2(gVarU32_1);
-  gVarS32_1 = eFnc_3(gVarS32_1, gVarU32_1);
-
-//SysTick_Config(SystemCoreClock / 1000);
+  gVarU32 = eFnc_2(gVarU32);
+  gVarS32 = eFnc_3(gVarS32, gVarU32);
 
   while (1)
   {
+    __NOP();
     delay(20);
-    __NOP();    
   }
 }
