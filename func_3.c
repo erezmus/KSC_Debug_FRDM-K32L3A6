@@ -1,12 +1,10 @@
-
-
 #include "func.h"
 
 struct_t gStructFnc3 = {
   .a = 31,
   .b = 32U,
   .c = 33U,
-  .x = {31U, 32U}
+  .x = {34U, 35U}
 };
 
 
