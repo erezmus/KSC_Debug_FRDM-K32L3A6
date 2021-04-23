@@ -54,24 +54,28 @@ int main (void)
   volatile uint32_t lVarU16 = gVarU16;
   volatile uint32_t lVarU8  = gVarU8;
 
+ __DSB();
+
 //SystemCoreClockUpdate();
 //SysTick_Config(SystemCoreClock / 1000);
 
   lVarF32 = gVarF32_s * gVarF32;
-  gVarF32 = lVarF32 + gVarF32 + gVarF32_s;
-
-  gVarU32 = lVarU16 + lVarU8;
+  gVarF32 = lVarF32 / gVarF32_s;
 
   gVarS32 = INT32_MAX;
   lVarU32 = sfiUSAT(gVarS32, 8U);
 
-  lVarS32 = gVarS32;
-  lVarS64 = lVarS32;
+  lVarS64 = lVarS32 = gVarS32;
   lVarS64 = lVarS64 * lVarS32;
   lVarD64 = sqrt((double)lVarS64);
+
   lVarU8 = sizeof(lVarS64);
 
+  gVarU32 = lVarU16 + lVarU8 - gVarU8;
+
+  lVarU32 = 1000U;
   gVarU32 = sfiAdd(lVarU32, 10U);
+  lVarS32 = 1000;
   gVarS32 = eFnc_add(lVarS32, 10);
 
   eFnc_1();
