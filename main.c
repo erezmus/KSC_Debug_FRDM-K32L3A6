@@ -42,6 +42,7 @@ static float    gVarF32_s = 1.32f;
        uint32_t gVarU32   = 32U;
        uint16_t gVarU16   = 16U;
        uint8_t  gVarU8    = 8U;
+       char     gText[]   = "Hello World.";
 
 
 int main (void)
@@ -51,8 +52,8 @@ int main (void)
   volatile int64_t  lVarS64 = gVarS64;
   volatile int32_t  lVarS32 = gVarS32;
   volatile uint32_t lVarU32 = gVarU32;
-  volatile uint32_t lVarU16 = gVarU16;
-  volatile uint32_t lVarU8  = gVarU8;
+  volatile uint16_t lVarU16 = gVarU16;
+  volatile uint8_t  lVarU8  = gVarU8;
 
  __DSB();
 

@@ -24,7 +24,7 @@ extern int32_t  gVarS32;
 extern uint32_t gVarU32;
 extern uint16_t gVarU16;
 extern uint8_t  gVarU8;
-
+extern char     gText[];
 
 
     void eFnc_1 (void);
