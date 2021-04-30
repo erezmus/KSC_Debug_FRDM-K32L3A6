@@ -2,6 +2,7 @@
 #include CMSIS_device_header
 
 #include <math.h>
+#include <stdlib.h>
 
 #include "func.h"
 
@@ -54,6 +55,8 @@ int main (void)
   volatile uint32_t lVarU32 = gVarU32;
   volatile uint16_t lVarU16 = gVarU16;
   volatile uint8_t  lVarU8  = gVarU8;
+  volatile size_t   lVarST  = 0;
+  volatile char     lText[20];
 
  __DSB();
 
@@ -71,6 +74,13 @@ int main (void)
   lVarD64 = sqrt((double)lVarS64);
 
   lVarU8 = sizeof(lVarS64);
+
+  lVarST  = sizeof(gText);
+  lText[lVarST - 1] = 0;
+  for (lVarS32 = 0; lVarS32 < (int32_t)(lVarST - 1); lVarS32++) {
+    lText[lVarS32] = gText[lVarS32];
+    gText[lVarS32] = lText[lVarS32] + 1;
+  }
 
   gVarU32 = lVarU16 + lVarU8 - gVarU8;
 
