@@ -13,18 +13,29 @@ typedef struct _struct_t
     } x;
 } struct_t;
 
-extern struct_t gStructFnc1;
-extern struct_t gStructFnc2;
-extern struct_t gStructFnc3;
+typedef enum _enum_t
+{
+  yes = 0,
+  maybe,
+  sure,
+  never,
+  no
+} enum_t;
 
-extern float    gVarF32;
-extern double   gVarD64;
-extern int64_t  gVarS64;
-extern int32_t  gVarS32;
-extern uint32_t gVarU32;
-extern uint16_t gVarU16;
-extern uint8_t  gVarU8;
-extern char     gText[];
+extern struct_t  gStructFnc1;
+extern struct_t  gStructFnc2;
+extern struct_t  gStructFnc3;
+
+extern float     gVarF32;
+extern double    gVarD64;
+extern int64_t   gVarS64;
+extern int32_t   gVarS32;
+extern uint32_t  gVarU32;
+extern uint32_t *gVarU32_p;
+extern uint16_t  gVarU16;
+extern uint8_t   gVarU8;
+extern char      gText[];
+extern enum_t    gVarEnum;
 
 
     void eFnc_1 (void);

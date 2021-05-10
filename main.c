@@ -45,6 +45,7 @@ static float     gVarF32_s = 1.32f;
        uint16_t  gVarU16   = 16U;
        uint8_t   gVarU8    = 8U;
        char      gText[]   = "Hello World.";
+       enum_t    gVarEnum  = never;
 
 
 int main (void)
@@ -59,6 +60,7 @@ int main (void)
   volatile uint8_t   lVarU8    = gVarU8;
   volatile size_t    lVarST    = 0;
   volatile char      lText[20];
+  volatile enum_t    lVarEnum;
 
  __DSB();
 
@@ -87,6 +89,11 @@ int main (void)
     gText[lVarS32] = lText[lVarS32] + 1;
   }
 
+  for (lVarEnum = yes; lVarEnum <= no; lVarEnum++)
+  {
+    gVarEnum = lVarEnum;
+  }
+  
   gVarU32 = lVarU16 + lVarU8 - gVarU8;
 
   lVarU32 = 1000U;
