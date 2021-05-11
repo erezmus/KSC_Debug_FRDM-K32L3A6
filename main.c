@@ -60,7 +60,7 @@ int main (void)
   volatile uint8_t   lVarU8    = gVarU8;
   volatile size_t    lVarST    = 0;
   volatile char      lText[20];
-  volatile enum_t    lVarEnum;
+  volatile enum_t    lVarEnum  = gVarEnum;
 
  __DSB();
 
