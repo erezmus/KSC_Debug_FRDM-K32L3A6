@@ -93,8 +93,10 @@ int main (void)
   {
     gVarEnum = lVarEnum;
   }
-  
+
   gVarU32 = lVarU16 + lVarU8 - gVarU8;
+
+  gVarS32 = sfiMax(lVarS32, (gVarS32 - 4095));
 
   lVarU32 = 1000U;
   gVarU32 = sfiAdd(lVarU32, 10U);

@@ -69,3 +69,8 @@ __STATIC_FORCEINLINE uint32_t sfiUSAT(int32_t val, uint32_t sat)
   }
   return (uint32_t)val;
 }
+
+__STATIC_FORCEINLINE int32_t sfiMax(int32_t a, int32_t b)
+{
+  return a > b ? a : b;
+}
